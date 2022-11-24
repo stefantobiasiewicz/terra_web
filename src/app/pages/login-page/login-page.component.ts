@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +19,10 @@ export class LoginPageComponent implements OnInit {
   ]);
 
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router) {
+   }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,6 +32,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   public submit() {
-    
+    this.authService.login(val.email, val.password)
+                .subscribe(
+                    () => {
+                        this.router.navigateByUrl('/');
+                    }
+                );
   }
 }
