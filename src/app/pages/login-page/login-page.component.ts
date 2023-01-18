@@ -29,11 +29,12 @@ export class LoginPageComponent {
       password: this.loginForm.get('password')!.value,
     };
     this.authService.login(loginModel).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/');
+      next: (token: string) => {
+        if (this.authService.saveAndDecodeToken(token) != null)
+          this.router.navigateByUrl('/');
       },
       error: () => {
-        // TODO toast
+        // TODO toast/notif
       },
     });
   }
