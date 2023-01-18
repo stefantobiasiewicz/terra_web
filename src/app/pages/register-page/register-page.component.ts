@@ -4,30 +4,37 @@ import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/helpers/custom-validators';
 import { RegisterModel } from 'src/app/models/register.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
 })
-export class RegisterPageComponent{
+export class RegisterPageComponent {
   public registerForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
-    this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, CustomValidators.isValidPassword()]],
-      repeatPassword: ['', [Validators.required]],
-      firstName: ['', [Validators.required, Validators.minLength(1)]],
-      lastName: ['', [Validators.required, Validators.minLength(1)]],
-    },
-    {
-      validators: [CustomValidators.match('password', 'repeatPassword')]
-    });
+    this.registerForm = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [Validators.required, CustomValidators.isValidPassword()],
+        ],
+        repeatPassword: ['', [Validators.required]],
+        firstName: ['', [Validators.required, Validators.minLength(1)]],
+        lastName: ['', [Validators.required, Validators.minLength(1)]],
+      },
+      {
+        validators: [CustomValidators.match('password', 'repeatPassword')],
+      }
+    );
   }
 
   public submit() {
@@ -39,10 +46,18 @@ export class RegisterPageComponent{
     };
     this.authService.register(registerModel).subscribe({
       next: () => {
-        //TODO
+        this.snackBar.open('Successfuly registered', 'Close', {
+          duration: 3000,
+        });
+
+        setTimeout(() => {
+          this.redirectToLogin();
+        }, 3000);
       },
       error: () => {
-        // TODO toast/notif
+        this.snackBar.open('Something went wrong', 'Close', {
+          duration: 3000,
+        });
       },
     });
   }

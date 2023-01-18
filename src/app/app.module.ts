@@ -16,7 +16,7 @@ import { MatCardModule} from '@angular/material/card'
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
     MatToolbarModule,
     MatIconModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
