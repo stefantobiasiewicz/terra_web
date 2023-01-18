@@ -38,4 +38,8 @@ export class LoginPageComponent {
       },
     });
   }
+
+  public redirectToRegister() {
+    this.router.navigateByUrl('/register');
+  }
 }
