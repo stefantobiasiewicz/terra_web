@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { DeviceModel } from 'src/app/models/device.model';
 import { FailedLogin } from 'src/app/models/failed-login.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { DeviceService } from 'src/app/services/devices.service';
 import { FailedLoginService } from 'src/app/services/failed-login.service';
 
 @Component({
@@ -10,26 +13,46 @@ import { FailedLoginService } from 'src/app/services/failed-login.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  public failedLogins?: FailedLogin[];
+  public devices?: DeviceModel[];
 
-  constructor(private failedLoginService: FailedLoginService,
+  constructor(private deviceService: DeviceService,
     private authService: AuthService,
+    private router: Router,
     private snackBar: MatSnackBar) { }
 
+  // ngOnInit(): void {
+  //   this.failedLoginService.getFailedLogins(this.authService.user?.email!, 0, 10).subscribe(
+  //     {
+  //       next: (failedLogins) => {
+  //         this.failedLogins = failedLogins
+  //       },
+  //       error: () => {
+  //         this.snackBar.open('Something went wrong', 'Close', {
+  //           duration: 3000
+  //         });
+  //       }
+  //     }
+  //   )
+  // }
+
   ngOnInit(): void {
-    // this.failedLogins = this.failedLoginService.getFailedLogins(this.authService.user?.email, 1, 20);
-    this.failedLoginService.getFailedLogins(this.authService.user?.email!, 0, 10).subscribe(
+    // TOOD : CHANGE IDS
+    this.deviceService.getDevices(1).subscribe(
       {
-        next: (failedLogins) => {
-          this.failedLogins = failedLogins
+        next: (device) => {
+          this.devices = device
         },
         error: () => {
-          this.snackBar.open('Something went wrong', 'Close', {
+          this.snackBar.open('Could not get devices!', 'Close', {
             duration: 3000
           });
         }
       }
     )
+  }
+
+  public openDetails(id:number) {
+    this.router.navigateByUrl(`/devices/${id}/details`);
   }
 
 }

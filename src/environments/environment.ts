@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:8080/api/v1'
+  backendUrl: 'https://51.38.131.66:10000/api/v1',
+  deviceUrl: 'https://51.38.131.66:9000/device'
 };
 
 /*

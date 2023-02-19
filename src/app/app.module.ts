@@ -20,13 +20,19 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomePageComponent } from './pages/home-page/home-page.component'
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { DeviceDetailsPageComponent } from './pages/device-details-page/device-details-page.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    DeviceDetailsPageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     MatIconModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatSlideToggleModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,11 @@
+<p>
+    <mat-toolbar>
+        <span>My Application</span>
+        <span *ngFor="let route of routes">
+            <button mat-button (click)="routeTo(route.path)">{{route.name}}</button>
+        </span>
+        <span style="align-self:right;">
+            <button mat-button (click)="logout()">Logout</button>
+        </span>
+    </mat-toolbar>
+</p>

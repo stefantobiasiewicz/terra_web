@@ -34,6 +34,11 @@ export class AuthService {
     });
   }
 
+  public logout() {
+    this.user=undefined;
+    localStorage.removeItem('token');
+  }
+
   public saveAndDecodeToken(token: any): User | null {
     try {
       let user = jwtDecode<User>(token.token);
