@@ -11,8 +11,8 @@ import jwtDecode from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly loginUrl: string = `${environment.backendUrl}/Authentication/Login`;
-  private readonly registerUrl: string = `${environment.backendUrl}/Authentication/Register`;
+  private readonly loginUrl: string = `${environment.backendUrl}/auth/authenticate`;
+  private readonly registerUrl: string = `${environment.backendUrl}/auth/register`;
 
   public user?: User;
 
@@ -29,15 +29,15 @@ export class AuthService {
 
   public login(loginModel: LoginModel): Observable<any> {
     let headers = { 'content-type': 'application/json' };
-    return this.http.post<string>(this.loginUrl, JSON.stringify(loginModel), {
+    return this.http.post<any>(this.loginUrl, JSON.stringify(loginModel), {
       headers: headers,
     });
   }
 
-  public saveAndDecodeToken(token: string): User | null {
+  public saveAndDecodeToken(token: any): User | null {
     try {
-      let user = jwtDecode<User>(token);
-      localStorage.setItem('token', token);
+      let user = jwtDecode<User>(token.token);
+      localStorage.setItem('token', token.token);
       this.user = user;
       return user;
     } catch (Error) {

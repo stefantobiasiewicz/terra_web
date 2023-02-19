@@ -14,15 +14,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule} from '@angular/material/card'
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HomePageComponent } from './pages/home-page/home-page.component'
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +42,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     MatIconModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true,
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

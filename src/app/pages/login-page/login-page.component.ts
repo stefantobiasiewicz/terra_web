@@ -33,7 +33,7 @@ export class LoginPageComponent {
     this.authService.login(loginModel).subscribe({
       next: (token: string) => {
         if (this.authService.saveAndDecodeToken(token) != null)
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/home');
       },
       error: () => {
         this.snackBar.open('Invalid credentials', 'Close', {
