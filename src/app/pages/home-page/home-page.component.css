@@ -1,0 +1,18 @@
+mat-card {
+    margin: 0px;
+    text-align: center;
+    width: 25%;
+  }
+  
+mat-form-field {
+  display: block;
+}
+
+.container {
+    display: flex;
+    grid: 10px;
+    flex-shrink: 1;
+    width: 100%;
+    justify-content: space-around;
+    padding-top: 10px;
+}
