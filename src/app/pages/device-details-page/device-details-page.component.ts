@@ -41,7 +41,7 @@ export class DeviceDetailsPageComponent implements OnInit {
  
     this.deviceId = parseInt(this.route.snapshot.paramMap.get('id')!);
        // TODO : CHANGE IDS
-    this.deviceDetailsService.getDeviceDetails(1, this.deviceId).subscribe(
+    this.deviceDetailsService.getDeviceDetails(this.authService.user?.id!, this.deviceId).subscribe(
       {
         next: (device) => {
           this.devicesDetails = device;
@@ -71,7 +71,7 @@ export class DeviceDetailsPageComponent implements OnInit {
   }
 
   public submit() {
-
+    
   }
 
 }

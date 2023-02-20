@@ -37,7 +37,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     // TOOD : CHANGE IDS
-    this.deviceService.getDevices(1).subscribe(
+    this.deviceService.getDevices(this.authService.user?.id!).subscribe(
       {
         next: (device) => {
           this.devices = device
