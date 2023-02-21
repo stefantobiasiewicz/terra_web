@@ -48,7 +48,7 @@ export class RenameDeviceModalComponent implements OnInit {
           // this.router.navigateByUrl('/home');
         },
         error: () => {
-          this.snackBar.open('Device register failed!', 'Close', {
+          this.snackBar.open('Device rename failed!', 'Close', {
             duration: 3000
           });
         }

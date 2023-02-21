@@ -29,6 +29,7 @@ import { AddDeviceModalComponent } from './pages/add-device-modal/add-device-mod
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RenameDeviceModalComponent } from './pages/rename-device-modal/rename-device-modal.component';
 import { RemoveDeviceModalComponent } from './pages/remove-device-modal/remove-device-modal.component';
+import { FailedLoginsPageComponent } from './pages/failed-logins-page/failed-logins-page.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { RemoveDeviceModalComponent } from './pages/remove-device-modal/remove-d
     NavbarComponent,
     AddDeviceModalComponent,
     RenameDeviceModalComponent,
-    RemoveDeviceModalComponent
+    RemoveDeviceModalComponent,
+    FailedLoginsPageComponent
   ],
   imports: [
     BrowserModule,

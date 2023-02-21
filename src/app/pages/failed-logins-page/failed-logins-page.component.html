@@ -1,0 +1,11 @@
+
+<table>
+    <tr >
+      <th>User</th>
+      <th>Date</th>
+    </tr>
+    <tr *ngFor="let failedLogin of failedLogins">
+      <td>{{failedLogin.username}}</td>
+      <td>{{failedLogin.date}}</td>
+    </tr>
+</table>
