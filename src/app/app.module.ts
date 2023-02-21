@@ -27,6 +27,8 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddDeviceModalComponent } from './pages/add-device-modal/add-device-modal.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { RenameDeviceModalComponent } from './pages/rename-device-modal/rename-device-modal.component';
+import { RemoveDeviceModalComponent } from './pages/remove-device-modal/remove-device-modal.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HomePageComponent,
     DeviceDetailsPageComponent,
     NavbarComponent,
-    AddDeviceModalComponent
+    AddDeviceModalComponent,
+    RenameDeviceModalComponent,
+    RemoveDeviceModalComponent
   ],
   imports: [
     BrowserModule,

@@ -49,4 +49,15 @@ export class AuthService {
       return null;
     }
   }
+
+  public getUserFromToken(): User | null{
+    try {
+      let token = localStorage.getItem('token');
+      let user = jwtDecode<User>(token!);
+      this.user = user;
+      return user;
+    } catch (Error) {
+      return null;
+    }
+  }
 }

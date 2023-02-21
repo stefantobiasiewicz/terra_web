@@ -4,6 +4,6 @@
 
     <input matInput placeholder="deviceCode" formControlName="deviceCode" name="deviceCode" required>
     <br />
-    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onNoClick()"  type="button">Cancel</button>
     <button mat-raised-button color="primary" type="submit" [disabled]="!registerDeviceForm.valid">Register</button>
 </form>

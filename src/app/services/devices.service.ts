@@ -10,8 +10,10 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class DeviceService {
-  private readonly deviceUrl: string = `${environment.deviceUrl}/all/`;
+  private readonly deviceUrl: string = `${environment.deviceUrl}/`;
+  private readonly allDevicesUrl: string = `${environment.deviceUrl}/all/`;
   private readonly addFeviceUrl: string = `${environment.deviceUrl}/add/`;
+  private readonly renameDeviceUrl: string = `${environment.deviceUrl}/name/`;
 
   constructor(private http: HttpClient,
     private authService: AuthService,
@@ -19,13 +21,31 @@ export class DeviceService {
 
   public getDevices(userId:number): Observable<DeviceModel[]> {
     return this.http.get<DeviceModel[]>(
-        this.deviceUrl+userId
+        this.allDevicesUrl+userId
       );
   }
 
   public registerDevice(mac: string, userId:number) {
     let headers = { 'content-type': 'application/json' };
     return this.http.post<any>(this.addFeviceUrl+userId+'/'+mac, {
+      headers: headers
+    });
+  }
+
+  public renameDevice(name: string, userId:number, deviceId:number) {
+    let headers = { 'content-type': 'application/json' };
+    let request : any = {
+      name:name
+    }
+    return this.http.post<any>(this.renameDeviceUrl+userId+'/'+deviceId, JSON.stringify(request), {
+      headers: headers
+    });
+  }
+
+  public removeDevice(userId:number, deviceId:number) {
+    let headers = { 'content-type': 'application/json' };
+
+    return this.http.delete<any>(this.deviceUrl+userId+'/'+deviceId, {
       headers: headers
     });
   }

@@ -1,30 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DeviceService } from 'src/app/services/devices.service';
 
 @Component({
-  selector: 'app-add-device-modal',
-  templateUrl: './add-device-modal.component.html',
-  styleUrls: ['./add-device-modal.component.css']
+  selector: 'app-rename-device-modal',
+  templateUrl: './rename-device-modal.component.html',
+  styleUrls: ['./rename-device-modal.component.css']
 })
-export class AddDeviceModalComponent implements OnInit {
-  private mac?: string;
-  public registerDeviceForm!: FormGroup;
+export class RenameDeviceModalComponent implements OnInit {
+  private name?: string;
+  public renameDeviceForm!: FormGroup;
 
-  constructor(
-    private dialogRef: MatDialogRef<AddDeviceModalComponent>,
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any,
+    private dialogRef: MatDialogRef<RenameDeviceModalComponent>,
     private deviceService: DeviceService,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router
   ) {
-    this.registerDeviceForm = this.fb.group({
-      deviceCode: ['', [Validators.required]]
+    this.renameDeviceForm = this.fb.group({
+      name: ['', [Validators.required]]
     });
   }
 
@@ -37,12 +37,12 @@ export class AddDeviceModalComponent implements OnInit {
   }
 
   submit(): void {
-    this.mac = this.registerDeviceForm.get('deviceCode')!.value
-    console.log(this.mac)
-    this.deviceService.registerDevice(this.mac!, this.authService.getUserFromToken()?.id!).subscribe(
+    this.name = this.renameDeviceForm.get('name')!.value
+    console.log(this.name)
+    this.deviceService.renameDevice(this.name!, this.authService.getUserFromToken()?.id!, this.data.id).subscribe(
       {
         next: () => {
-          this.snackBar.open('Device registered!', 'Close', {
+          this.snackBar.open('Device successfully renamed!', 'Close', {
             duration: 3000,
           });
           // this.router.navigateByUrl('/home');
@@ -56,5 +56,5 @@ export class AddDeviceModalComponent implements OnInit {
     );
     this.dialogRef.close();
   }
-
+  
 }

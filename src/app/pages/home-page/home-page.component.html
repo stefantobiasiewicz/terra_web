@@ -27,6 +27,8 @@
     </mat-card-header>
     <mat-card-actions>
       <button mat-button (click)="openDetails(device.id)" [disabled]="!(device.status == 'READY')">DETAILS</button>
+      <button mat-button (click)="renameDevice(device.id)" [disabled]="false">RENAME</button>
+      <button mat-button (click)="removeDevice(device.id)" [disabled]="false">REMOVE</button>
     </mat-card-actions>
   </mat-card>
 

@@ -1,0 +1,9 @@
+
+<form [formGroup]="renameDeviceForm" (ngSubmit)="submit()">
+    <h2>Register new device</h2>
+
+    <input matInput placeholder="name" formControlName="name" name="name" required>
+    <br />
+    <button mat-button (click)="onNoClick()" type="button">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!renameDeviceForm.valid">Rename</button>
+</form>

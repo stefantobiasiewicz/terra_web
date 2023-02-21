@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DeviceService } from 'src/app/services/devices.service';
 import { FailedLoginService } from 'src/app/services/failed-login.service';
 import { AddDeviceModalComponent } from '../add-device-modal/add-device-modal.component';
+import { RemoveDeviceModalComponent } from '../remove-device-modal/remove-device-modal.component';
+import { RenameDeviceModalComponent } from '../rename-device-modal/rename-device-modal.component';
 
 @Component({
   selector: 'app-home-page',
@@ -25,7 +27,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     // TOOD : CHANGE IDS
-    this.deviceService.getDevices(this.authService.user?.id!).subscribe(
+    this.deviceService.getDevices(this.authService.getUserFromToken()?.id!).subscribe(
       {
         next: (device) => {
           this.devices = device
@@ -41,6 +43,28 @@ export class HomePageComponent implements OnInit {
 
   public openDetails(id:number) {
     this.router.navigateByUrl(`/devices/${id}/details`);
+  }
+
+  public removeDevice(deviceId:number) {
+    const dialogRef = this.dialog.open(RemoveDeviceModalComponent, {
+      data: {
+        id: deviceId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  public renameDevice(deviceId:number) {
+    const dialogRef = this.dialog.open(RenameDeviceModalComponent, {
+      data: {
+        id: deviceId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   openDialog(): void {
