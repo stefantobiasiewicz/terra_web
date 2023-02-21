@@ -71,7 +71,28 @@ export class DeviceDetailsPageComponent implements OnInit {
   }
 
   public submit() {
-    
+    let formData: any = {
+      light: this.deviceDetailsForm.get('light')!.value,
+      fan: this.deviceDetailsForm.get('fan')!.value,
+      humidifier: this.deviceDetailsForm.get('humidifier')!.value,
+      heater: {
+        onOff:this.deviceDetailsForm.get('onOff')!.value,
+        setTemp:this.deviceDetailsForm.get('setTemp')!.value,
+      }
+    };
+
+    this.deviceDetailsService.postUpdateDeviceDetails(this.authService.user?.id!, this.deviceId!, formData).subscribe({
+      next: () => {
+        this.snackBar.open('Updated succesfully!', 'Close', {
+          duration: 3000,
+        });
+      },
+      error: () => {
+        this.snackBar.open('Could not update device data', 'Close', {
+          duration: 3000,
+        });
+      },
+    });
   }
 
 }

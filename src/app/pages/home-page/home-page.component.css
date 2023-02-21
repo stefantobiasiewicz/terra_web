@@ -10,9 +10,11 @@ mat-form-field {
 
 .container {
     display: flex;
-    grid: 10px;
+    gap: 30px;
     flex-shrink: 1;
     width: 100%;
+    justify-self: center;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding-top: 10px;
 }

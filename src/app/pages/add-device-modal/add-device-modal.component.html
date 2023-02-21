@@ -1,0 +1,9 @@
+
+<form [formGroup]="registerDeviceForm" (ngSubmit)="submit()">
+    <h2>Register new device</h2>
+
+    <input matInput placeholder="deviceCode" formControlName="deviceCode" name="deviceCode" required>
+    <br />
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registerDeviceForm.valid">Register</button>
+</form>

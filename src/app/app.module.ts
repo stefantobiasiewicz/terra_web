@@ -23,6 +23,10 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { DeviceDetailsPageComponent } from './pages/device-details-page/device-details-page.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddDeviceModalComponent } from './pages/add-device-modal/add-device-modal.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -32,7 +36,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterPageComponent,
     HomePageComponent,
     DeviceDetailsPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddDeviceModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule,
+    MatGridListModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

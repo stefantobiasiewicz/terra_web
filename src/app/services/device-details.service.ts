@@ -20,4 +20,11 @@ export class DeviceDetailsService {
         this.deviceDetailsUrl+userId+'/'+deviceId
       )
     }
+
+    public postUpdateDeviceDetails(userId:number, deviceId:number, body:any) {
+      let headers = { 'content-type': 'application/json' };
+      return this.http.post<any>(this.deviceDetailsUrl+userId+'/'+deviceId, JSON.stringify(body), {
+        headers: headers,
+      });
+    }
 }

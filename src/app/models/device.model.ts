@@ -3,4 +3,5 @@ export interface DeviceModel {
     name: string;
     image: string;
     status: string;
+    code:string;
   }

@@ -1,9 +1,28 @@
+<!-- <mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let device of devices">
+    <mat-card >
+      <mat-card-header>
+        <mat-card-title>{{device.name}}</mat-card-title>
+        <mat-card-subtitle>ID: {{device.id}}</mat-card-subtitle>
+        <mat-card-subtitle>Status: {{device.status}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-button (click)="openDetails(device.id)" [disabled]="!(device.status == 'READY')">DETAILS</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
 <div class="container">
+
+
+
 
   <mat-card *ngFor="let device of devices">
     <mat-card-header>
       <mat-card-title>{{device.name}}</mat-card-title>
       <mat-card-subtitle>ID: {{device.id}}</mat-card-subtitle>
+      <mat-card-subtitle>Code: {{device.code}}</mat-card-subtitle>
       <mat-card-subtitle>Status: {{device.status}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
@@ -11,5 +30,10 @@
     </mat-card-actions>
   </mat-card>
 
+  <mat-card>
+    <mat-card-actions>
+      <button mat-raised-button (click)="openDialog()">Add new</button>
+    </mat-card-actions>
+  </mat-card>
 
 </div>

@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class DeviceService {
   private readonly deviceUrl: string = `${environment.deviceUrl}/all/`;
+  private readonly addFeviceUrl: string = `${environment.deviceUrl}/add/`;
 
   constructor(private http: HttpClient,
     private authService: AuthService,
@@ -20,5 +21,12 @@ export class DeviceService {
     return this.http.get<DeviceModel[]>(
         this.deviceUrl+userId
       );
+  }
+
+  public registerDevice(mac: string, userId:number) {
+    let headers = { 'content-type': 'application/json' };
+    return this.http.post<any>(this.addFeviceUrl+userId+'/'+mac, {
+      headers: headers
+    });
   }
 }
