@@ -1,11 +1,17 @@
 <p>
     <mat-toolbar>
-        <span>My Application</span>
-        <span *ngFor="let route of routes">
-            <button mat-button (click)="routeTo(route.path)">{{route.name}}</button>
+        <span>Terra Web</span>
+        <span *ngIf="isLoggedIn()">
+            <button mat-button (click)="home()">Home</button>
         </span>
-        <span style="align-self:right;">
+        <span *ngIf="isLoggedIn() && isAdmin()">
+            <button mat-button (click)="failedLogins()">Failed logins</button>
+        </span>
+        <span style="align-self:right;" *ngIf="isLoggedIn()">
             <button mat-button (click)="logout()">Logout</button>
+        </span>
+        <span style="align-self:right;" *ngIf="!isLoggedIn()">
+            <button mat-button (click)="login()">Login</button>
         </span>
     </mat-toolbar>
 </p>

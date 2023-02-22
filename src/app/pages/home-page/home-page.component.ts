@@ -26,7 +26,10 @@ export class HomePageComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    // TOOD : CHANGE IDS
+    this.fetchDevices();
+  }
+
+  public fetchDevices () {
     this.deviceService.getDevices(this.authService.getUserFromToken()?.id!).subscribe(
       {
         next: (device) => {
@@ -53,6 +56,7 @@ export class HomePageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.fetchDevices();
     });
   }
 
@@ -64,6 +68,7 @@ export class HomePageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.fetchDevices();
     });
   }
 
@@ -71,6 +76,7 @@ export class HomePageComponent implements OnInit {
     const dialogRef = this.dialog.open(AddDeviceModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
+      this.fetchDevices();
     });
   }
 }
